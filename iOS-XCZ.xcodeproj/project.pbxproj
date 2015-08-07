@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0FA19F5B1B70CEDF00355934 /* XCZNetworkKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA19F5A1B70CEDF00355934 /* XCZNetworkKit.swift */; };
-		0FA19F8D1B70EBE800355934 /* XCZConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA19F8C1B70EBE800355934 /* XCZConstant.swift */; };
-		0FA19F8F1B70F8BC00355934 /* XCZUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA19F8E1B70F8BC00355934 /* XCZUtils.swift */; };
-		0FA19F941B71FE1600355934 /* XCZHomeBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA19F931B71FE1600355934 /* XCZHomeBankViewController.swift */; };
-		0FA19FA31B72002800355934 /* XCZHomeTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA19FA21B72002800355934 /* XCZHomeTaskViewController.swift */; };
-		0FA19FA51B72005100355934 /* XCZHomeWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA19FA41B72005100355934 /* XCZHomeWalletViewController.swift */; };
-		0FA19FA91B7208AE00355934 /* UIColor+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA19FA81B7208AE00355934 /* UIColor+String.swift */; };
 		0FDA0B241B709FC400CB2985 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA0B231B709FC400CB2985 /* AppDelegate.swift */; };
 		0FDA0B271B709FC400CB2985 /* iOS_XCZ.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA0B251B709FC400CB2985 /* iOS_XCZ.xcdatamodeld */; };
 		0FDA0B2E1B709FC400CB2985 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FDA0B2D1B709FC400CB2985 /* Images.xcassets */; };
 		0FDA0B311B709FC400CB2985 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FDA0B2F1B709FC400CB2985 /* LaunchScreen.xib */; };
 		0FDA0B3D1B709FC400CB2985 /* iOS_XCZTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA0B3C1B709FC400CB2985 /* iOS_XCZTests.swift */; };
-		0FE1D7011B74794700F12419 /* XCZBankCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1D7001B74794700F12419 /* XCZBankCountView.swift */; };
-		0FE1D7031B747CED00F12419 /* UIView+SeparateLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1D7021B747CED00F12419 /* UIView+SeparateLine.swift */; };
+		0FE1D7231B74B09A00F12419 /* XCZHomeBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1D7161B74B09A00F12419 /* XCZHomeBankViewController.swift */; };
+		0FE1D7241B74B09A00F12419 /* XCZBankCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1D7181B74B09A00F12419 /* XCZBankCountView.swift */; };
+		0FE1D7251B74B09A00F12419 /* XCZHomeTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1D71C1B74B09A00F12419 /* XCZHomeTaskViewController.swift */; };
+		0FE1D7261B74B09A00F12419 /* XCZHomeWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1D7211B74B09A00F12419 /* XCZHomeWalletViewController.swift */; };
+		0FE1D7301B74B1D800F12419 /* UIColor+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1D7291B74B1D800F12419 /* UIColor+String.swift */; };
+		0FE1D7311B74B1D800F12419 /* UIView+SeparateLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1D72A1B74B1D800F12419 /* UIView+SeparateLine.swift */; };
+		0FE1D7321B74B1D800F12419 /* XCZConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1D72C1B74B1D800F12419 /* XCZConstant.swift */; };
+		0FE1D7331B74B1D800F12419 /* XCZUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1D72D1B74B1D800F12419 /* XCZUtils.swift */; };
+		0FE1D7341B74B1D800F12419 /* XCZNetworkKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1D72F1B74B1D800F12419 /* XCZNetworkKit.swift */; };
 		FB4EE0E2ACDA56AD850EA28F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3249EB6A2B0A430FD806884F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -36,13 +36,6 @@
 
 /* Begin PBXFileReference section */
 		0FA19F501B70A18700355934 /* iOS-XCZ-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-XCZ-Bridging-Header.h"; sourceTree = "<group>"; };
-		0FA19F5A1B70CEDF00355934 /* XCZNetworkKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZNetworkKit.swift; sourceTree = "<group>"; };
-		0FA19F8C1B70EBE800355934 /* XCZConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZConstant.swift; sourceTree = "<group>"; };
-		0FA19F8E1B70F8BC00355934 /* XCZUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZUtils.swift; sourceTree = "<group>"; };
-		0FA19F931B71FE1600355934 /* XCZHomeBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZHomeBankViewController.swift; sourceTree = "<group>"; };
-		0FA19FA21B72002800355934 /* XCZHomeTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZHomeTaskViewController.swift; sourceTree = "<group>"; };
-		0FA19FA41B72005100355934 /* XCZHomeWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZHomeWalletViewController.swift; sourceTree = "<group>"; };
-		0FA19FA81B7208AE00355934 /* UIColor+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+String.swift"; sourceTree = "<group>"; };
 		0FDA0B1E1B709FC400CB2985 /* iOS-XCZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-XCZ.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FDA0B221B709FC400CB2985 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FDA0B231B709FC400CB2985 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,8 +45,15 @@
 		0FDA0B361B709FC400CB2985 /* iOS-XCZTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-XCZTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FDA0B3B1B709FC400CB2985 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FDA0B3C1B709FC400CB2985 /* iOS_XCZTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_XCZTests.swift; sourceTree = "<group>"; };
-		0FE1D7001B74794700F12419 /* XCZBankCountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZBankCountView.swift; sourceTree = "<group>"; };
-		0FE1D7021B747CED00F12419 /* UIView+SeparateLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SeparateLine.swift"; sourceTree = "<group>"; };
+		0FE1D7161B74B09A00F12419 /* XCZHomeBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZHomeBankViewController.swift; sourceTree = "<group>"; };
+		0FE1D7181B74B09A00F12419 /* XCZBankCountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZBankCountView.swift; sourceTree = "<group>"; };
+		0FE1D71C1B74B09A00F12419 /* XCZHomeTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZHomeTaskViewController.swift; sourceTree = "<group>"; };
+		0FE1D7211B74B09A00F12419 /* XCZHomeWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZHomeWalletViewController.swift; sourceTree = "<group>"; };
+		0FE1D7291B74B1D800F12419 /* UIColor+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+String.swift"; sourceTree = "<group>"; };
+		0FE1D72A1B74B1D800F12419 /* UIView+SeparateLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SeparateLine.swift"; sourceTree = "<group>"; };
+		0FE1D72C1B74B1D800F12419 /* XCZConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZConstant.swift; sourceTree = "<group>"; };
+		0FE1D72D1B74B1D800F12419 /* XCZUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZUtils.swift; sourceTree = "<group>"; };
+		0FE1D72F1B74B1D800F12419 /* XCZNetworkKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZNetworkKit.swift; sourceTree = "<group>"; };
 		3249EB6A2B0A430FD806884F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		96C40FC30623764A13B6FDC5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FDC42603B51B89DD7A033F0C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,154 +78,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0FA19F551B70A73400355934 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				0FA19F9D1B71FFBF00355934 /* HomeWallet */,
-				0FA19F991B71FF7B00355934 /* HomeTask */,
-				0FA19F951B71FE1D00355934 /* HomeBank */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
-		0FA19F571B70A8A200355934 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				0FA19FA61B72079700355934 /* addition */,
-				0FA19F591B70A8CD00355934 /* config */,
-				0FA19F581B70A8BE00355934 /* network */,
-			);
-			name = Utils;
-			sourceTree = "<group>";
-		};
-		0FA19F581B70A8BE00355934 /* network */ = {
-			isa = PBXGroup;
-			children = (
-				0FA19F5A1B70CEDF00355934 /* XCZNetworkKit.swift */,
-			);
-			name = network;
-			sourceTree = "<group>";
-		};
-		0FA19F591B70A8CD00355934 /* config */ = {
-			isa = PBXGroup;
-			children = (
-				0FA19F8C1B70EBE800355934 /* XCZConstant.swift */,
-				0FA19F8E1B70F8BC00355934 /* XCZUtils.swift */,
-			);
-			name = config;
-			sourceTree = "<group>";
-		};
-		0FA19F951B71FE1D00355934 /* HomeBank */ = {
-			isa = PBXGroup;
-			children = (
-				0FA19F981B71FE5600355934 /* Models */,
-				0FA19F971B71FE4900355934 /* Views */,
-				0FA19F961B71FE3900355934 /* Viewcontrollers */,
-			);
-			name = HomeBank;
-			sourceTree = "<group>";
-		};
-		0FA19F961B71FE3900355934 /* Viewcontrollers */ = {
-			isa = PBXGroup;
-			children = (
-				0FA19F931B71FE1600355934 /* XCZHomeBankViewController.swift */,
-			);
-			name = Viewcontrollers;
-			sourceTree = "<group>";
-		};
-		0FA19F971B71FE4900355934 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				0FE1D7001B74794700F12419 /* XCZBankCountView.swift */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		0FA19F981B71FE5600355934 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		0FA19F991B71FF7B00355934 /* HomeTask */ = {
-			isa = PBXGroup;
-			children = (
-				0FA19F9C1B71FFB700355934 /* Models */,
-				0FA19F9B1B71FFB000355934 /* Views */,
-				0FA19F9A1B71FFA300355934 /* ViewControllers */,
-			);
-			name = HomeTask;
-			sourceTree = "<group>";
-		};
-		0FA19F9A1B71FFA300355934 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				0FA19FA21B72002800355934 /* XCZHomeTaskViewController.swift */,
-			);
-			name = ViewControllers;
-			sourceTree = "<group>";
-		};
-		0FA19F9B1B71FFB000355934 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		0FA19F9C1B71FFB700355934 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		0FA19F9D1B71FFBF00355934 /* HomeWallet */ = {
-			isa = PBXGroup;
-			children = (
-				0FA19FA11B72000600355934 /* Models */,
-				0FA19FA01B71FFFF00355934 /* Views */,
-				0FA19F9E1B71FFE900355934 /* ViewControllers */,
-			);
-			name = HomeWallet;
-			sourceTree = "<group>";
-		};
-		0FA19F9E1B71FFE900355934 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				0FA19FA41B72005100355934 /* XCZHomeWalletViewController.swift */,
-			);
-			name = ViewControllers;
-			sourceTree = "<group>";
-		};
-		0FA19FA01B71FFFF00355934 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		0FA19FA11B72000600355934 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		0FA19FA61B72079700355934 /* addition */ = {
-			isa = PBXGroup;
-			children = (
-				0FA19FA81B7208AE00355934 /* UIColor+String.swift */,
-				0FE1D7021B747CED00F12419 /* UIView+SeparateLine.swift */,
-			);
-			name = addition;
-			sourceTree = "<group>";
-		};
 		0FDA0B151B709FC400CB2985 = {
 			isa = PBXGroup;
 			children = (
-				0FA19F571B70A8A200355934 /* Utils */,
-				0FA19F551B70A73400355934 /* UI */,
+				0FE1D7271B74B1D800F12419 /* Utils */,
+				0FE1D7061B74AE7C00F12419 /* UI */,
 				0FDA0B201B709FC400CB2985 /* iOS-XCZ */,
 				0FDA0B391B709FC400CB2985 /* iOS-XCZTests */,
 				0FDA0B1F1B709FC400CB2985 /* Products */,
@@ -279,6 +136,149 @@
 				0FDA0B3B1B709FC400CB2985 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0FE1D7061B74AE7C00F12419 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0FE1D7131B74B09A00F12419 /* HomeBank */,
+				0FE1D7191B74B09A00F12419 /* HomeTask */,
+				0FE1D71E1B74B09A00F12419 /* HomeWallet */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		0FE1D7131B74B09A00F12419 /* HomeBank */ = {
+			isa = PBXGroup;
+			children = (
+				0FE1D7141B74B09A00F12419 /* Models */,
+				0FE1D7151B74B09A00F12419 /* ViewControllers */,
+				0FE1D7171B74B09A00F12419 /* Views */,
+			);
+			path = HomeBank;
+			sourceTree = "<group>";
+		};
+		0FE1D7141B74B09A00F12419 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0FE1D7151B74B09A00F12419 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0FE1D7161B74B09A00F12419 /* XCZHomeBankViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0FE1D7171B74B09A00F12419 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0FE1D7181B74B09A00F12419 /* XCZBankCountView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0FE1D7191B74B09A00F12419 /* HomeTask */ = {
+			isa = PBXGroup;
+			children = (
+				0FE1D71A1B74B09A00F12419 /* Models */,
+				0FE1D71B1B74B09A00F12419 /* ViewControllers */,
+				0FE1D71D1B74B09A00F12419 /* Views */,
+			);
+			path = HomeTask;
+			sourceTree = "<group>";
+		};
+		0FE1D71A1B74B09A00F12419 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0FE1D71B1B74B09A00F12419 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0FE1D71C1B74B09A00F12419 /* XCZHomeTaskViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0FE1D71D1B74B09A00F12419 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0FE1D71E1B74B09A00F12419 /* HomeWallet */ = {
+			isa = PBXGroup;
+			children = (
+				0FE1D71F1B74B09A00F12419 /* Models */,
+				0FE1D7201B74B09A00F12419 /* ViewControllers */,
+				0FE1D7221B74B09A00F12419 /* Views */,
+			);
+			path = HomeWallet;
+			sourceTree = "<group>";
+		};
+		0FE1D71F1B74B09A00F12419 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0FE1D7201B74B09A00F12419 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0FE1D7211B74B09A00F12419 /* XCZHomeWalletViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0FE1D7221B74B09A00F12419 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0FE1D7271B74B1D800F12419 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0FE1D7281B74B1D800F12419 /* addition */,
+				0FE1D72B1B74B1D800F12419 /* config */,
+				0FE1D72E1B74B1D800F12419 /* network */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		0FE1D7281B74B1D800F12419 /* addition */ = {
+			isa = PBXGroup;
+			children = (
+				0FE1D7291B74B1D800F12419 /* UIColor+String.swift */,
+				0FE1D72A1B74B1D800F12419 /* UIView+SeparateLine.swift */,
+			);
+			path = addition;
+			sourceTree = "<group>";
+		};
+		0FE1D72B1B74B1D800F12419 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				0FE1D72C1B74B1D800F12419 /* XCZConstant.swift */,
+				0FE1D72D1B74B1D800F12419 /* XCZUtils.swift */,
+			);
+			path = config;
+			sourceTree = "<group>";
+		};
+		0FE1D72E1B74B1D800F12419 /* network */ = {
+			isa = PBXGroup;
+			children = (
+				0FE1D72F1B74B1D800F12419 /* XCZNetworkKit.swift */,
+			);
+			path = network;
 			sourceTree = "<group>";
 		};
 		9A07DB3749DA5E5983A7C506 /* Pods */ = {
@@ -432,17 +432,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FE1D7011B74794700F12419 /* XCZBankCountView.swift in Sources */,
-				0FA19F8F1B70F8BC00355934 /* XCZUtils.swift in Sources */,
-				0FA19F5B1B70CEDF00355934 /* XCZNetworkKit.swift in Sources */,
-				0FA19FA91B7208AE00355934 /* UIColor+String.swift in Sources */,
-				0FA19F8D1B70EBE800355934 /* XCZConstant.swift in Sources */,
-				0FA19F941B71FE1600355934 /* XCZHomeBankViewController.swift in Sources */,
-				0FE1D7031B747CED00F12419 /* UIView+SeparateLine.swift in Sources */,
-				0FA19FA31B72002800355934 /* XCZHomeTaskViewController.swift in Sources */,
+				0FE1D7231B74B09A00F12419 /* XCZHomeBankViewController.swift in Sources */,
+				0FE1D7341B74B1D800F12419 /* XCZNetworkKit.swift in Sources */,
+				0FE1D7251B74B09A00F12419 /* XCZHomeTaskViewController.swift in Sources */,
+				0FE1D7261B74B09A00F12419 /* XCZHomeWalletViewController.swift in Sources */,
 				0FDA0B241B709FC400CB2985 /* AppDelegate.swift in Sources */,
-				0FA19FA51B72005100355934 /* XCZHomeWalletViewController.swift in Sources */,
+				0FE1D7301B74B1D800F12419 /* UIColor+String.swift in Sources */,
+				0FE1D7331B74B1D800F12419 /* XCZUtils.swift in Sources */,
+				0FE1D7311B74B1D800F12419 /* UIView+SeparateLine.swift in Sources */,
+				0FE1D7321B74B1D800F12419 /* XCZConstant.swift in Sources */,
 				0FDA0B271B709FC400CB2985 /* iOS_XCZ.xcdatamodeld in Sources */,
+				0FE1D7241B74B09A00F12419 /* XCZBankCountView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
