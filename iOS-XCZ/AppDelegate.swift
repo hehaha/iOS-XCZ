@@ -16,7 +16,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // Override point for customization after application
+        p_appearanceConfig()
+        
+        let bankViewController = XCZHomeBankViewController()
+        bankViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "bank_tab_gray")?.imageWithRenderingMode(.AlwaysOriginal), selectedImage: UIImage(named: "bank_tab_red")?.imageWithRenderingMode(.AlwaysOriginal))
+        let bankNavigationController = UINavigationController(rootViewController: bankViewController)
+        
+        let taskViewController = XCZHomeTaskViewController()
+        taskViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "task_tab_gray")?.imageWithRenderingMode(.AlwaysOriginal), selectedImage: UIImage(named: "task_tab_red")?.imageWithRenderingMode(.AlwaysOriginal))
+        let taskNavigationController = UINavigationController(rootViewController: taskViewController)
+        
+        let walletViewController = XCZHomeWalletViewController()
+        walletViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "cash_tab_gray")?.imageWithRenderingMode(.AlwaysOriginal), selectedImage: UIImage(named: "cash_tab_red")?.imageWithRenderingMode(.AlwaysOriginal))
+        let walletNavigationController = UINavigationController(rootViewController: walletViewController)
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [bankNavigationController, taskNavigationController, walletNavigationController]
+        
+        tabBarController.tabBar.contentMode = UIViewContentMode.ScaleAspectFill
+        tabBarController.tabBar.barTintColor = UIColor.whiteColor()
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
         return true
     }
 
@@ -107,5 +129,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    //MARK: - Private method
+    func p_appearanceConfig() {
+        UINavigationBar.appearance().barTintColor = UIColor.XCZColor(0xe84c3d)
+    }
 }
 
