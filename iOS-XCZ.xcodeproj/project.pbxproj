@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F40CD1F1B74BA37003879D8 /* XCZHomeTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F40CD1E1B74BA37003879D8 /* XCZHomeTaskCell.swift */; };
+		0FC43FCA1B7633D3005EEC20 /* XCZTaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC43FC91B7633D3005EEC20 /* XCZTaskDetailViewController.swift */; };
+		0FC43FCC1B7661E9005EEC20 /* XCZTaskDetailFinishedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC43FCB1B7661E9005EEC20 /* XCZTaskDetailFinishedCell.swift */; };
+		0FC43FCE1B766C0C005EEC20 /* XCZTaskDetailUnfinishedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC43FCD1B766C0C005EEC20 /* XCZTaskDetailUnfinishedCell.swift */; };
 		0FDA0B241B709FC400CB2985 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA0B231B709FC400CB2985 /* AppDelegate.swift */; };
 		0FDA0B271B709FC400CB2985 /* iOS_XCZ.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA0B251B709FC400CB2985 /* iOS_XCZ.xcdatamodeld */; };
 		0FDA0B2E1B709FC400CB2985 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FDA0B2D1B709FC400CB2985 /* Images.xcassets */; };
@@ -35,7 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F40CD1E1B74BA37003879D8 /* XCZHomeTaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZHomeTaskCell.swift; sourceTree = "<group>"; };
 		0FA19F501B70A18700355934 /* iOS-XCZ-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-XCZ-Bridging-Header.h"; sourceTree = "<group>"; };
+		0FC43FC91B7633D3005EEC20 /* XCZTaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZTaskDetailViewController.swift; sourceTree = "<group>"; };
+		0FC43FCB1B7661E9005EEC20 /* XCZTaskDetailFinishedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZTaskDetailFinishedCell.swift; sourceTree = "<group>"; };
+		0FC43FCD1B766C0C005EEC20 /* XCZTaskDetailUnfinishedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCZTaskDetailUnfinishedCell.swift; sourceTree = "<group>"; };
 		0FDA0B1E1B709FC400CB2985 /* iOS-XCZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-XCZ.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FDA0B221B709FC400CB2985 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FDA0B231B709FC400CB2985 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +86,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F40CD1D1B74BA26003879D8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0F40CD1E1B74BA37003879D8 /* XCZHomeTaskCell.swift */,
+				0FC43FCB1B7661E9005EEC20 /* XCZTaskDetailFinishedCell.swift */,
+				0FC43FCD1B766C0C005EEC20 /* XCZTaskDetailUnfinishedCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		0FDA0B151B709FC400CB2985 = {
 			isa = PBXGroup;
 			children = (
@@ -184,9 +202,9 @@
 		0FE1D7191B74B09A00F12419 /* HomeTask */ = {
 			isa = PBXGroup;
 			children = (
+				0F40CD1D1B74BA26003879D8 /* Views */,
 				0FE1D71A1B74B09A00F12419 /* Models */,
 				0FE1D71B1B74B09A00F12419 /* ViewControllers */,
-				0FE1D71D1B74B09A00F12419 /* Views */,
 			);
 			path = HomeTask;
 			sourceTree = "<group>";
@@ -202,15 +220,9 @@
 			isa = PBXGroup;
 			children = (
 				0FE1D71C1B74B09A00F12419 /* XCZHomeTaskViewController.swift */,
+				0FC43FC91B7633D3005EEC20 /* XCZTaskDetailViewController.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		0FE1D71D1B74B09A00F12419 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		0FE1D71E1B74B09A00F12419 /* HomeWallet */ = {
@@ -433,15 +445,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FE1D7231B74B09A00F12419 /* XCZHomeBankViewController.swift in Sources */,
+				0FC43FCE1B766C0C005EEC20 /* XCZTaskDetailUnfinishedCell.swift in Sources */,
 				0FE1D7341B74B1D800F12419 /* XCZNetworkKit.swift in Sources */,
 				0FE1D7251B74B09A00F12419 /* XCZHomeTaskViewController.swift in Sources */,
 				0FE1D7261B74B09A00F12419 /* XCZHomeWalletViewController.swift in Sources */,
 				0FDA0B241B709FC400CB2985 /* AppDelegate.swift in Sources */,
 				0FE1D7301B74B1D800F12419 /* UIColor+String.swift in Sources */,
 				0FE1D7331B74B1D800F12419 /* XCZUtils.swift in Sources */,
+				0FC43FCC1B7661E9005EEC20 /* XCZTaskDetailFinishedCell.swift in Sources */,
 				0FE1D7311B74B1D800F12419 /* UIView+SeparateLine.swift in Sources */,
 				0FE1D7321B74B1D800F12419 /* XCZConstant.swift in Sources */,
+				0F40CD1F1B74BA37003879D8 /* XCZHomeTaskCell.swift in Sources */,
 				0FDA0B271B709FC400CB2985 /* iOS_XCZ.xcdatamodeld in Sources */,
+				0FC43FCA1B7633D3005EEC20 /* XCZTaskDetailViewController.swift in Sources */,
 				0FE1D7241B74B09A00F12419 /* XCZBankCountView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
