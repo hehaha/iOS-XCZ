@@ -123,7 +123,7 @@ class XCZHomeBankViewController: UIViewController {
         }
         buttonContainerView.XCZaddTopAndBottomSeparator()
         
-        let countView = XCZBankCountView(profitArr: [10.0, 15.0, 50.0, 100.0])
+        let countView = XCZBankCountView(profitArr: [1.0, 15.0, 50.0, 100.0])
         countView.backgroundColor = UIColor.whiteColor()
         view.addSubview(countView)
         countView.mas_makeConstraints { (make) -> Void in

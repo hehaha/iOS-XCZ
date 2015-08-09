@@ -78,7 +78,7 @@ class XCZBankCountView: UIView {
             make.left.equalTo()(leftGraLine.mas_right).with().offset()(barLeftMargin)
             make.width.equalTo()(barWidth)
             if self._totalProfit == 0 {
-                make.height.equalTo()(1)
+                make.height.equalTo()(totalBarView)
             }
             else {
                 make.height.equalTo()(totalBarView).with().multipliedBy()(CGFloat(self._yesterdayProfit / self._totalProfit))
@@ -109,7 +109,12 @@ class XCZBankCountView: UIView {
             make.right.equalTo()(bottomGraLine).with().offset()(-barRightMargin)
             make.width.equalTo()(barWidth)
             make.bottom.equalTo()(bottomGraLine)
-            make.top.equalTo()(leftGraLine).with().offset()(15)
+            if self._totalProfit == 0 {
+                make.top.equalTo()(bottomGraLine).with().offset()(-5)
+            }
+            else {
+                make.top.equalTo()(leftGraLine).with().offset()(15)
+            }
         }
         
         let totalBottomLabel = UILabel()
@@ -148,7 +153,7 @@ class XCZBankCountView: UIView {
             make.left.equalTo()(firstHelpView.mas_right)
             make.width.equalTo()(barWidth)
             if self._totalProfit == 0 {
-                make.height.equalTo()(1)
+                make.height.equalTo()(totalBarView)
             }
             else {
                 make.height.equalTo()(totalBarView).with().multipliedBy()(CGFloat(self._weekProfit / self._totalProfit))
@@ -192,7 +197,7 @@ class XCZBankCountView: UIView {
             make.left.equalTo()(secondHelpView.mas_right)
             make.width.equalTo()(barWidth)
             if self._totalProfit == 0 {
-                make.height.equalTo()(1)
+                make.height.equalTo()(totalBarView)
             }
             else {
                 make.height.equalTo()(totalBarView).with().multipliedBy()(CGFloat(self._monthProfit / self._totalProfit))

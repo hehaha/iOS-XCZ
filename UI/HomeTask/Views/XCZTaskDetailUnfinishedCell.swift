@@ -41,6 +41,7 @@ class XCZTaskDetailUnfinishedCell: UITableViewCell {
         contentView.backgroundColor = UIColor.XCZColor(0xecf0f1)
         
         let bubbleImageView = UIImageView(image: UIImage(named: "task_unfinished_frame"))
+        bubbleImageView.userInteractionEnabled = true
         contentView.addSubview(bubbleImageView)
         bubbleImageView.mas_makeConstraints { (make) -> Void in
             make.edges.equalTo()(self.contentView).with().insets()(UIEdgeInsetsMake(5, 11, 5, 11))

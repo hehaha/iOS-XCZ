@@ -14,6 +14,9 @@ private let finishedCellIdentifier = "finishedCell"
 private let unfinishedCellIdentifier = "unfinishedCell"
 
 class XCZTaskDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    private let _segmentView = UISegmentedControl(items: ["未完成","已完成"])
+    private let _tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,36 +26,43 @@ class XCZTaskDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
         p_setUpView()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    //MARK: - Event
+    func segmentChanged() {
+        _tableView.setContentOffset(CGPointZero, animated: true)
+        //未完成
+        if _segmentView.selectedSegmentIndex == 0 {
+            _tableView.rowHeight = unfinishedCellHeight
+        }
+        else {
+            _tableView.rowHeight = finishedCellHeight
+        }
+        _tableView.reloadData()
     }
     
     //MARK: - Private method
     private func p_setUpView(){
-        let segmentView = UISegmentedControl(items: ["未完成","已完成"])
-        segmentView.backgroundColor = UIColor.whiteColor()
-        segmentView.tintColor = UIColor.XCZColor(0xe84c3d)
-        segmentView.selectedSegmentIndex = 0
-        segmentView.setTitleTextAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(14)], forState: .Normal)
-        view.addSubview(segmentView)
-        segmentView.mas_makeConstraints { (make) -> Void in
+        _segmentView.backgroundColor = UIColor.whiteColor()
+        _segmentView.tintColor = UIColor.XCZColor(0xe84c3d)
+        _segmentView.selectedSegmentIndex = 0
+        _segmentView.setTitleTextAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(14)], forState: .Normal)
+        _segmentView.addTarget(self, action: "segmentChanged", forControlEvents: .ValueChanged)
+        view.addSubview(_segmentView)
+        _segmentView.mas_makeConstraints { (make) -> Void in
             make.top.equalTo()(self.view).with().offset()(XCZConstant.navigationBarHeight + 10)
             make.centerX.equalTo()(self.view)
         }
         
-        let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .None
-        tableView.rowHeight = unfinishedCellHeight
-        tableView.backgroundColor = UIColor.XCZColor(0xecf0f1)
-        tableView.registerClass(XCZTaskDetailFinishedCell.self, forCellReuseIdentifier: finishedCellIdentifier)
-        tableView.registerClass(XCZTaskDetailUnfinishedCell.self, forCellReuseIdentifier: unfinishedCellIdentifier)
-        view.addSubview(tableView)
-        tableView.mas_makeConstraints { (make) -> Void in
-            make.top.equalTo()(segmentView.mas_bottom).with().offset()(5)
+        _tableView.delegate = self
+        _tableView.dataSource = self
+        _tableView.separatorStyle = .None
+        _tableView.rowHeight = unfinishedCellHeight
+        _tableView.backgroundColor = UIColor.XCZColor(0xecf0f1)
+        _tableView.registerClass(XCZTaskDetailFinishedCell.self, forCellReuseIdentifier: finishedCellIdentifier)
+        _tableView.registerClass(XCZTaskDetailUnfinishedCell.self, forCellReuseIdentifier: unfinishedCellIdentifier)
+        view.addSubview(_tableView)
+        _tableView.mas_makeConstraints { (make) -> Void in
+            make.top.equalTo()(self._segmentView.mas_bottom).with().offset()(5)
             make.right.equalTo()(self.view)
             make.left.equalTo()(self.view)
             make.bottom.equalTo()(self.view).with().offset()(-XCZConstant.tabBarHeight)
@@ -65,8 +75,14 @@ class XCZTaskDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(unfinishedCellIdentifier, forIndexPath: indexPath) as! XCZTaskDetailUnfinishedCell
-        return cell
+        if _segmentView.selectedSegmentIndex == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(unfinishedCellIdentifier, forIndexPath: indexPath) as! XCZTaskDetailUnfinishedCell
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(finishedCellIdentifier, forIndexPath: indexPath) as! XCZTaskDetailFinishedCell
+            return cell
+        }
     }
     
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
