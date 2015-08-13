@@ -37,6 +37,10 @@ class XCZTaskDetailViewController: UIViewController, UITableViewDelegate, UITabl
         else {
             _tableView.rowHeight = finishedCellHeight
         }
+    }
+    
+    //MARK: - UIScrollViewDelegate
+    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
         _tableView.reloadData()
     }
     

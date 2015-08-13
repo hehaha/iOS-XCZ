@@ -33,7 +33,15 @@ class XCZNetworkKit: NSObject {
     }
     
     private let _networkGroup = dispatch_group_create()
-    private let _networkReachabilityManager = AFNetworkReachabilityManager(forDomain: XCZConstant.XCZDomain)
+    private var _networkReachabilityManager: AFNetworkReachabilityManager {
+        return _httpRequestManager.reachabilityManager
+    }
+    
+    private let _httpRequestManager: AFHTTPRequestOperationManager = {
+        let manager = AFHTTPRequestOperationManager()
+        manager.reachabilityManager = AFNetworkReachabilityManager(forDomain: XCZConstant.XCZDomain)
+        return manager
+    }()
     
     /**
     发送 Get 接口请求
@@ -43,7 +51,7 @@ class XCZNetworkKit: NSObject {
     :param: success     成功回调
     :param: failure     失败回调
     */
-    func sendGetWithRelativeUrl(relativeUrl: String, params:[String: AnyObject], success:((responseObject: AnyObject) -> Void), failure:((error: NSError) -> Void)){
+    func sendGetWithRelativeUrl(relativeUrl: String, params:[String: AnyObject], success:((responseObject: AnyObject) -> Void)?, failure:((error: NSError) -> Void)?){
         p_httpRequest(p_constructWholeUrl(relativeUrl), params: params, method: .Get, success: success, fail: failure)
     }
     
@@ -55,10 +63,15 @@ class XCZNetworkKit: NSObject {
     :param: success     成功回调
     :param: failure     失败回调
     */
-    func sendPostWithRelativeUrl(relativeUrl: String, params:[String: AnyObject], success:((responseObject: AnyObject) -> Void), failure:((error: NSError) -> Void)){
+    func sendPostWithRelativeUrl(relativeUrl: String, params:[String: AnyObject], success:((responseObject: AnyObject) -> Void)?, failure:((error: NSError) -> Void)?){
         p_httpRequest(p_constructWholeUrl(relativeUrl), params: params, method: .Post, success: success, fail: failure)
     }
     
+    //手动生成服务器数据错误的NSError
+    func createServerDataFormatError() -> NSError {
+        return p_createError(9000001)
+    }
+
     //MARK: - private method
     private func p_httpRequest(url: String, params: [String: AnyObject], method: HttpMethod, success: ((responseObject: AnyObject) -> Void)?, fail: ((error: NSError) -> Void)?) {
         _networkReachabilityManager.startMonitoring()
@@ -88,11 +101,7 @@ class XCZNetworkKit: NSObject {
             if let responseDic = operation.responseObject as? [String: AnyObject]{
                 if let errorCode = responseDic["error_code"] as? NSNumber{
                     handledError = self.p_createError(errorCode.integerValue)
-                }else{
-                    println("[\(NSDate())]http error! \nError: \(error).\nResponse string: \(operation.responseString)")
                 }
-            }else{
-                println("[\(NSDate())]http error! \nError: \(error).\nResponse string: \(operation.responseString)")
             }
             fail?(error: handledError)
         }
@@ -100,7 +109,7 @@ class XCZNetworkKit: NSObject {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         dispatch_group_enter(_networkGroup)
         
-        let requestManager = AFHTTPRequestOperationManager()
+        let requestManager = _httpRequestManager
         if method == .Get {
             requestManager.GET(url, parameters: params, success: successAction, failure: failAction)
         }
@@ -124,6 +133,6 @@ class XCZNetworkKit: NSObject {
     }
     
     private func p_constructWholeUrl(relativeUrl: String) -> String{
-        return "\(XCZConstant.HttpHostBaseURL)/\(relativeUrl)"
+        return "\(XCZConstant.HttpHostBaseURL)\(relativeUrl)"
     }
 }

@@ -16,7 +16,7 @@ struct XCZConstant {
     
     static let XCZDomain = "182.92.154.247"
     static let NetworkErrorKey = "ErrorInfo"
-    static let HttpHostBaseURL = "https://\(XCZDomain)"
+    static let HttpHostBaseURL = "http://\(XCZDomain)"
     
     static let HasShowSplashKey = "HasShowSplash"
     

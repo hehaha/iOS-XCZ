@@ -8,16 +8,96 @@
 
 import UIKit
 
-class XCZHomeWalletViewController: UIViewController {
+private let viewBottomMargin: CGFloat = 10
+
+class XCZHomeWalletViewController: UIViewController, UIScrollViewDelegate {
+    private let _bottomContainerView = XCZApplyCashView()
+    private let _scrollView = UIScrollView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        automaticallyAdjustsScrollViewInsets = false
         navigationItem.title = "钱包"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "记账", style: UIBarButtonItemStyle.Plain, target: self, action: "recordItemClicked")
         navigationController?.navigationBar.titleTextAttributes = XCZConstant.NavigtionBarTitleAttributeDict
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.XCZColor(0xecf0f1)
+        
+        p_setUpView()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     //MARK: - Event
     func recordItemClicked() {
+    }
+    
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let height = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue().height {
+            _scrollView.contentInset = UIEdgeInsets(top: -height + 64, left: 0, bottom: 0, right: 0)
+
+        }
+    }
+    
+    func keyboardWillHide() {
+        _scrollView.contentInset = UIEdgeInsetsZero
+    }
+
+    func tapToHideKeyboard() {
+        _bottomContainerView.resignFirstResponder()
+    }
+    
+    //MARK: - Private method
+    private func p_setUpView() {
+        _scrollView.delegate = self
+        view.addSubview(_scrollView)
+        _scrollView.mas_makeConstraints { (make) -> Void in
+            make.edges.equalTo()(self.view)
+        }
+        
+        let contentView = UIView()
+        let tap = UITapGestureRecognizer(target: self, action: "tapToHideKeyboard")
+        contentView.addGestureRecognizer(tap)
+        _scrollView.addSubview(contentView)
+        contentView.mas_makeConstraints { (make) -> Void in
+            make.edges.equalTo()(self._scrollView)
+            make.width.equalTo()(UIScreen.mainScreen().bounds.width)
+        }
+        
+        let accountImageView = UIImageView(image: UIImage(named: "bank_account_red"))
+        contentView.addSubview(accountImageView)
+        accountImageView.mas_makeConstraints { (make) -> Void in
+            make.top.equalTo()(contentView).with().offset()(viewBottomMargin + XCZConstant.navigationBarHeight)
+            make.right.equalTo()(contentView)
+            make.left.equalTo()(contentView)
+        }
+        
+        let graphView = XCZExpenseGraphView(profit: 0, expend: 0)
+        graphView.backgroundColor = UIColor.whiteColor()
+        contentView.addSubview(graphView)
+        graphView.mas_updateConstraints { (make) -> Void in
+            make.top.equalTo()(accountImageView.mas_bottom).with().offset()(viewBottomMargin)
+            make.right.equalTo()(contentView)
+            make.left.equalTo()(contentView)
+        }
+
+        _bottomContainerView.backgroundColor = UIColor.whiteColor()
+        contentView.addSubview(_bottomContainerView)
+        _bottomContainerView.mas_makeConstraints { (make) -> Void in
+            make.bottom.equalTo()(contentView).with().offset()(-XCZConstant.tabBarHeight - 30)
+            make.right.equalTo()(contentView)
+            make.left.equalTo()(contentView)
+            make.top.equalTo()(graphView.mas_bottom).with().offset()(viewBottomMargin)
+        }
     }
 }

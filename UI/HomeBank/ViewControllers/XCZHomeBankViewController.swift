@@ -14,6 +14,8 @@ private let viewBottomMargin: CGFloat = 10
 
 class XCZHomeBankViewController: UIViewController {
     
+    private let _bankAmountLabel = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "家庭银行"
@@ -21,6 +23,7 @@ class XCZHomeBankViewController: UIViewController {
         view.backgroundColor = UIColor.XCZColor(0xecf0f1)
         
         p_initView()
+        p_loadData()
     }
     
     //MARK: - Event
@@ -40,6 +43,33 @@ class XCZHomeBankViewController: UIViewController {
             make.top.equalTo()(self.view).with().offset()(viewBottomMargin + XCZConstant.navigationBarHeight)
             make.right.equalTo()(self.view)
             make.left.equalTo()(self.view)
+        }
+        
+        let bankContainerView = UIView()
+        accountImageView.addSubview(bankContainerView)
+        bankContainerView.mas_makeConstraints { (make) -> Void in
+            make.center.equalTo()(accountImageView)
+        }
+        
+        let bankTitleLabel = UILabel()
+        bankTitleLabel.font = UIFont.systemFontOfSize(18)
+        bankTitleLabel.textColor = UIColor.whiteColor()
+        bankTitleLabel.text = "银行存款"
+        bankContainerView.addSubview(bankTitleLabel)
+        bankTitleLabel.mas_makeConstraints { (make) -> Void in
+            make.left.equalTo()(bankContainerView)
+            make.centerY.equalTo()(bankContainerView)
+        }
+        
+        _bankAmountLabel.font = UIFont.systemFontOfSize(28)
+        _bankAmountLabel.text = "¥ 0"
+        _bankAmountLabel.textColor = UIColor.whiteColor()
+        bankContainerView.addSubview(_bankAmountLabel)
+        _bankAmountLabel.mas_makeConstraints { (make) -> Void in
+            make.left.equalTo()(bankTitleLabel.mas_right).with().offset()(22)
+            make.top.equalTo()(bankContainerView)
+            make.bottom.equalTo()(bankContainerView)
+            make.right.equalTo()(bankContainerView)
         }
         
         let buttonContainerView = UIView()
@@ -131,6 +161,16 @@ class XCZHomeBankViewController: UIViewController {
             make.right.equalTo()(self.view)
             make.left.equalTo()(self.view)
             make.bottom.equalTo()(self.view).with().offset()(-30 - XCZConstant.tabBarHeight)
+        }
+    }
+    
+    private func p_loadData() {
+        XCZNetworkKit.sharedManager.userLogin(email: "admin@admin.com", password: "admin123", success: { (userInfo) -> Void in
+            if let bankAmount = userInfo.bankAmount {
+                self._bankAmountLabel.text = "¥ " + XCZconvertToCashString(bankAmount.doubleValue)
+            }
+        }) { (error) -> Void in
+            print(error)
         }
     }
 }

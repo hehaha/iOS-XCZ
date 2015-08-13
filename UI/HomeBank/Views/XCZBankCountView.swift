@@ -98,7 +98,7 @@ class XCZBankCountView: UIView {
         let yesterdayTopLabel = UILabel()
         yesterdayTopLabel.textColor = UIColor.XCZColor(0x000000)
         yesterdayTopLabel.font = UIFont.systemFontOfSize(11)
-        yesterdayTopLabel.text = "¥ " + convertToCashString(_yesterdayProfit)
+        yesterdayTopLabel.text = "¥ " + XCZconvertToCashString(_yesterdayProfit)
         addSubview(yesterdayTopLabel)
         yesterdayTopLabel.mas_makeConstraints { (make) -> Void in
             make.centerX.equalTo()(yesterdayBarView)
@@ -129,7 +129,7 @@ class XCZBankCountView: UIView {
         
         let totalTopLabel = UILabel()
         totalTopLabel.textColor = UIColor.XCZColor(0x000000)
-        totalTopLabel.text = "¥ " + convertToCashString(_totalProfit)
+        totalTopLabel.text = "¥ " + XCZconvertToCashString(_totalProfit)
         totalTopLabel.font = UIFont.systemFontOfSize(11)
         addSubview(totalTopLabel)
         totalTopLabel.mas_makeConstraints { (make) -> Void in
@@ -163,7 +163,7 @@ class XCZBankCountView: UIView {
         let weekTopLabel = UILabel()
         weekTopLabel.textColor = UIColor.XCZColor(0x000000)
         weekTopLabel.font = UIFont.systemFontOfSize(11)
-        weekTopLabel.text = "¥ " + convertToCashString(_weekProfit)
+        weekTopLabel.text = "¥ " + XCZconvertToCashString(_weekProfit)
         addSubview(weekTopLabel)
         weekTopLabel.mas_makeConstraints { (make) -> Void in
             make.centerX.equalTo()(weekBarView)
@@ -205,7 +205,7 @@ class XCZBankCountView: UIView {
         }
         
         let monthTopLabel = UILabel()
-        monthTopLabel.text = "¥ " + convertToCashString(_monthProfit)
+        monthTopLabel.text = "¥ " + XCZconvertToCashString(_monthProfit)
         monthTopLabel.textColor = UIColor.XCZColor(0x000000)
         monthTopLabel.font = UIFont.systemFontOfSize(11)
         addSubview(monthTopLabel)
