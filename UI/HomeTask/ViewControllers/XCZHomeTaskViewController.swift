@@ -16,8 +16,6 @@ class XCZHomeTaskViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         navigationItem.title = "任务"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "查看", style: UIBarButtonItemStyle.Plain, target: self, action: "checkInItemClicked")
-        navigationController?.navigationBar.titleTextAttributes = XCZConstant.NavigtionBarTitleAttributeDict
-        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
         let tableView = UITableView()
         tableView.delegate = self
@@ -53,9 +51,4 @@ class XCZHomeTaskViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
-    
-    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-    
 }

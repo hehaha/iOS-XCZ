@@ -24,6 +24,7 @@ class XCZApplyCashView: UIView {
     
     private let _useTextField: UITextField = {
         let text = UITextField()
+        text.tintColor = UIColor.XCZColor(0xe64d43)
         text.font = textFont
         text.textColor = textColor
         return text
@@ -31,6 +32,7 @@ class XCZApplyCashView: UIView {
     
     private let _applyTextField: UITextField = {
         let text = UITextField()
+        text.tintColor = UIColor.XCZColor(0xe64d43)
         text.font = textFont
         text.textColor = textColor
         return text
@@ -48,7 +50,26 @@ class XCZApplyCashView: UIView {
     
     //MARK: - Event
     func applyButtonClicked() {
-        applyAction?()
+        var errorStr: String?
+        let cashStr = _applyTextField.text.stringByReplacingOccurrencesOfString(" ", withString: "")
+        let useStr = _useTextField.text.stringByReplacingOccurrencesOfString(" ", withString: "")
+        if cashStr.isEmpty {
+            errorStr = "申请的金额不能为空！"
+        }
+        else if useStr.isEmpty {
+            errorStr = "现金用途不能为空！"
+        }
+        else if cashStr.XCZtoNumber() == nil {
+            errorStr = "请填写正确的金额！"
+        }
+        
+        if errorStr != nil {
+            let alertView = UIAlertView(title: errorStr, message: nil, delegate: nil, cancelButtonTitle: "确定")
+            alertView.show()
+        }
+        else {
+           applyAction?()
+        }
     }
     
     override func resignFirstResponder() -> Bool {

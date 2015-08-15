@@ -8,13 +8,8 @@
 
 import Foundation
 
-extension UIColor {
-    class func XCZColor(hexRGBInt: Int) -> UIColor {
-        hexRGBInt
-        return UIColor.XCZColor(hexRGBInt, alpha: 1)
-    }
-    
-    class func XCZColor(hexRGBInt: Int, alpha: CGFloat) -> UIColor {
+extension UIColor {    
+    class func XCZColor(hexRGBInt: Int, alpha: CGFloat = 1) -> UIColor {
         var finalAlpha = alpha
         if alpha > 1 || alpha < 0 {
             finalAlpha = 1

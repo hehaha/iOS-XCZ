@@ -15,11 +15,11 @@ private let viewBottomMargin: CGFloat = 10
 class XCZHomeBankViewController: UIViewController {
     
     private let _bankAmountLabel = UILabel()
+    private let _countView = XCZBankCountView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "家庭银行"
-        navigationController?.navigationBar.titleTextAttributes = XCZConstant.NavigtionBarTitleAttributeDict
         view.backgroundColor = UIColor.XCZColor(0xecf0f1)
         
         p_initView()
@@ -38,11 +38,13 @@ class XCZHomeBankViewController: UIViewController {
     //MARK: - Private method
     private func p_initView() {
         let accountImageView = UIImageView(image: UIImage(named: "bank_account_red"))
+        let ratio = accountImageView.image!.size.height / accountImageView.image!.size.width
         view.addSubview(accountImageView)
         accountImageView.mas_makeConstraints { (make) -> Void in
             make.top.equalTo()(self.view).with().offset()(viewBottomMargin + XCZConstant.navigationBarHeight)
             make.right.equalTo()(self.view)
             make.left.equalTo()(self.view)
+            make.height.equalTo()(accountImageView.mas_width).multipliedBy()(ratio)
         }
         
         let bankContainerView = UIView()
@@ -153,10 +155,9 @@ class XCZHomeBankViewController: UIViewController {
         }
         buttonContainerView.XCZaddTopAndBottomSeparator()
         
-        let countView = XCZBankCountView(profitArr: [1.0, 15.0, 50.0, 100.0])
-        countView.backgroundColor = UIColor.whiteColor()
-        view.addSubview(countView)
-        countView.mas_makeConstraints { (make) -> Void in
+        _countView.backgroundColor = UIColor.whiteColor()
+        view.addSubview(_countView)
+        _countView.mas_makeConstraints { (make) -> Void in
             make.top.equalTo()(buttonContainerView.mas_bottom).with().offset()(viewBottomMargin)
             make.right.equalTo()(self.view)
             make.left.equalTo()(self.view)
@@ -165,12 +166,11 @@ class XCZHomeBankViewController: UIViewController {
     }
     
     private func p_loadData() {
-        XCZNetworkKit.sharedManager.userLogin(email: "admin@admin.com", password: "admin123", success: { (userInfo) -> Void in
-            if let bankAmount = userInfo.bankAmount {
+        XCZNetworkKit.sharedManager.fetchBankAccount({ [unowned self] (bankModel) -> Void in
+            if let bankAmount = bankModel.bankAmount {
                 self._bankAmountLabel.text = "¥ " + XCZconvertToCashString(bankAmount.doubleValue)
             }
-        }) { (error) -> Void in
-            print(error)
-        }
+            self._countView.bankAmountModel = bankModel
+        }, fail: nil)
     }
 }

@@ -38,6 +38,7 @@ class XCZTaskDetailUnfinishedCell: UITableViewCell {
     
     //MARK: - Private Method
     private func p_setUpView() {
+        selectionStyle = .None
         contentView.backgroundColor = UIColor.XCZColor(0xecf0f1)
         
         let bubbleImageView = UIImageView(image: UIImage(named: "task_unfinished_frame"))

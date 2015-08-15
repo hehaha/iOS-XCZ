@@ -21,7 +21,6 @@ class XCZTaskDetailViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "查看"
-        navigationController?.navigationBar.titleTextAttributes = XCZConstant.NavigtionBarTitleAttributeDict
         view.backgroundColor = UIColor.XCZColor(0xecf0f1)
         
         p_setUpView()
@@ -29,7 +28,6 @@ class XCZTaskDetailViewController: UIViewController, UITableViewDelegate, UITabl
     
     //MARK: - Event
     func segmentChanged() {
-        _tableView.setContentOffset(CGPointZero, animated: true)
         //未完成
         if _segmentView.selectedSegmentIndex == 0 {
             _tableView.rowHeight = unfinishedCellHeight
@@ -37,6 +35,15 @@ class XCZTaskDetailViewController: UIViewController, UITableViewDelegate, UITabl
         else {
             _tableView.rowHeight = finishedCellHeight
         }
+        
+        //contentOffset为0时，并不会触发scrollViewDidEndScrollingAnimation
+        if _tableView.contentOffset == CGPointZero {
+            _tableView.reloadData()
+        }
+        else {
+            _tableView.setContentOffset(CGPointZero, animated: true)
+        }
+
     }
     
     //MARK: - UIScrollViewDelegate
@@ -88,9 +95,4 @@ class XCZTaskDetailViewController: UIViewController, UITableViewDelegate, UITabl
             return cell
         }
     }
-    
-    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-    
 }

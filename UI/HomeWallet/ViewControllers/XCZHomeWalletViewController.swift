@@ -11,16 +11,14 @@ import UIKit
 private let viewBottomMargin: CGFloat = 10
 
 class XCZHomeWalletViewController: UIViewController, UIScrollViewDelegate {
-    private let _bottomContainerView = XCZApplyCashView()
+    private let _bottomView = XCZApplyCashView()
     private let _scrollView = UIScrollView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false
         navigationItem.title = "钱包"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "记账", style: UIBarButtonItemStyle.Plain, target: self, action: "recordItemClicked")
-        navigationController?.navigationBar.titleTextAttributes = XCZConstant.NavigtionBarTitleAttributeDict
-        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "账单", style: UIBarButtonItemStyle.Plain, target: self, action: "recordItemClicked")
         view.backgroundColor = UIColor.XCZColor(0xecf0f1)
         
         p_setUpView()
@@ -39,6 +37,8 @@ class XCZHomeWalletViewController: UIViewController, UIScrollViewDelegate {
     
     //MARK: - Event
     func recordItemClicked() {
+        let billVC = XCZBillDetailViewController()
+        navigationController?.pushViewController(billVC, animated: true)
     }
     
     
@@ -54,7 +54,7 @@ class XCZHomeWalletViewController: UIViewController, UIScrollViewDelegate {
     }
 
     func tapToHideKeyboard() {
-        _bottomContainerView.resignFirstResponder()
+        _bottomView.resignFirstResponder()
     }
     
     //MARK: - Private method
@@ -91,13 +91,14 @@ class XCZHomeWalletViewController: UIViewController, UIScrollViewDelegate {
             make.left.equalTo()(contentView)
         }
 
-        _bottomContainerView.backgroundColor = UIColor.whiteColor()
-        contentView.addSubview(_bottomContainerView)
-        _bottomContainerView.mas_makeConstraints { (make) -> Void in
+        _bottomView.backgroundColor = UIColor.whiteColor()
+        contentView.addSubview(_bottomView)
+        _bottomView.mas_makeConstraints { (make) -> Void in
             make.bottom.equalTo()(contentView).with().offset()(-XCZConstant.tabBarHeight - 30)
             make.right.equalTo()(contentView)
             make.left.equalTo()(contentView)
             make.top.equalTo()(graphView.mas_bottom).with().offset()(viewBottomMargin)
         }
+        
     }
 }

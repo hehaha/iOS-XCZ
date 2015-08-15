@@ -1,3 +1,4 @@
+
 //
 //  XCZBankCountView.swift
 //  iOS-XCZ
@@ -17,27 +18,49 @@ private let moneyLabelBottomMargin: CGFloat = 5
 
 class XCZBankCountView: UIView {
     
-    private var _yesterdayProfit = 0.0
-    private var _weekProfit = 0.0
-    private var _monthProfit = 0.0
-    private var _totalProfit = 0.0
+    var bankAmountModel: XCZBankAccountModel? {
+        didSet {
+            if let model = bankAmountModel {
+                _yesterdayProfit = model.dayIncome?.doubleValue ?? 0
+                _weekProfit = model.weekIncome?.doubleValue ?? 0
+                _monthProfit = model.monthIncome?.doubleValue ?? 0
+                _totalProfit = model.totalIncome?.doubleValue ?? 0
+                p_updateUI()
+            }
+        }
+    }
     
-    init(profitArr: [Double]) {
+    private var _yesterdayProfit = 0.0
+    private let _yesterdayTopLabel = UILabel()
+    private let _yesterdayBarView = UIView()
+    
+    private var _weekProfit = 0.0
+    private let _weekBarView = UIView()
+    private let _weekTopLabel = UILabel()
+    
+    private var _monthProfit = 0.0
+    private let _monthTopLabel = UILabel()
+    private let _monthBarView = UIView()
+    
+    private var _totalProfit = 0.0
+    private let _totalBarView = UIView()
+    private let _totalTopLabel = UILabel()
+    
+    private let _leftGraLine = UIView()
+    private let _bottomGraLine = UIView()
+    
+    init(bankModel: XCZBankAccountModel? = nil) {
         super.init(frame: CGRectZero)
-        if profitArr.count >= 4 {
-            _yesterdayProfit = profitArr[0]
-            _weekProfit = profitArr[1]
-            _monthProfit = profitArr[2]
-            _totalProfit = profitArr[3]
+        if let model = bankModel {
+            _yesterdayProfit = model.dayIncome?.doubleValue ?? 0
+            _weekProfit = model.weekIncome?.doubleValue ?? 0
+            _monthProfit = model.monthIncome?.doubleValue ?? 0
+            _totalProfit = model.totalIncome?.doubleValue ?? 0
         }
         
         p_initView()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         p_initView()
@@ -46,42 +69,38 @@ class XCZBankCountView: UIView {
     private func p_initView() {
         XCZaddTopAndBottomSeparator()
         
-        let leftGraLine = UIView()
-        leftGraLine.backgroundColor = UIColor.XCZColor(0xbdc3c7)
-        addSubview(leftGraLine)
-        leftGraLine.mas_makeConstraints { (make) -> Void in
+        _leftGraLine.backgroundColor = UIColor.XCZColor(0xbdc3c7)
+        addSubview(_leftGraLine)
+        _leftGraLine.mas_makeConstraints { (make) -> Void in
             make.left.equalTo()(self).with().offset()(graphLeftMargin)
             make.width.equalTo()(1)
             make.top.equalTo()(self).with().offset()(25)
             make.bottom.equalTo()(self).with().offset()(-42)
         }
         
-        let bottomGraLine = UIView()
-        bottomGraLine.backgroundColor = UIColor.XCZColor(0xbdc3c7)
-        addSubview(bottomGraLine)
-        bottomGraLine.mas_makeConstraints { (make) -> Void in
+        _bottomGraLine.backgroundColor = UIColor.XCZColor(0xbdc3c7)
+        addSubview(_bottomGraLine)
+        _bottomGraLine.mas_makeConstraints { (make) -> Void in
             make.left.equalTo()(self).with().offset()(graphLeftMargin)
-            make.top.equalTo()(leftGraLine.mas_bottom)
+            make.top.equalTo()(self._leftGraLine.mas_bottom)
             make.height.equalTo()(1)
             make.right.equalTo()(self).with().offset()(-graphRightMargin)
         }
         
-        let totalBarView = UIView()
-        totalBarView.backgroundColor = UIColor.XCZColor(0xf6a564)
-        addSubview(totalBarView)
+        _totalBarView.backgroundColor = UIColor.XCZColor(0xf6a564)
+        addSubview(_totalBarView)
         
-        let yesterdayBarView = UIView()
-        yesterdayBarView.backgroundColor = UIColor.XCZColor(0x18c2a5)
-        addSubview(yesterdayBarView)
-        yesterdayBarView.mas_makeConstraints { (make) -> Void in
-            make.bottom.equalTo()(bottomGraLine)
-            make.left.equalTo()(leftGraLine.mas_right).with().offset()(barLeftMargin)
+        _yesterdayBarView.backgroundColor = UIColor.XCZColor(0x18c2a5)
+        addSubview(_yesterdayBarView)
+        _yesterdayBarView.mas_makeConstraints { (make) -> Void in
+            make.bottom.equalTo()(self._bottomGraLine)
+            make.left.equalTo()(self._leftGraLine.mas_right).with().offset()(barLeftMargin)
             make.width.equalTo()(barWidth)
             if self._totalProfit == 0 {
-                make.height.equalTo()(totalBarView)
+                make.height.equalTo()(self._totalBarView)
             }
             else {
-                make.height.equalTo()(totalBarView).with().multipliedBy()(CGFloat(self._yesterdayProfit / self._totalProfit))
+                make.height.equalTo()(self._totalBarView).with().multipliedBy()(CGFloat(self._yesterdayProfit / self._totalProfit))
             }
         }
         
@@ -91,29 +110,28 @@ class XCZBankCountView: UIView {
         yesterdayBottomLabel.textColor = UIColor.XCZColor(0x626262)
         addSubview(yesterdayBottomLabel)
         yesterdayBottomLabel.mas_makeConstraints { (make) -> Void in
-            make.centerX.equalTo()(yesterdayBarView)
-            make.top.equalTo()(bottomGraLine.mas_bottom).with().offset()(5)
+            make.centerX.equalTo()(self._yesterdayBarView)
+            make.top.equalTo()(self._bottomGraLine.mas_bottom).with().offset()(5)
         }
         
-        let yesterdayTopLabel = UILabel()
-        yesterdayTopLabel.textColor = UIColor.XCZColor(0x000000)
-        yesterdayTopLabel.font = UIFont.systemFontOfSize(11)
-        yesterdayTopLabel.text = "¥ " + XCZconvertToCashString(_yesterdayProfit)
-        addSubview(yesterdayTopLabel)
-        yesterdayTopLabel.mas_makeConstraints { (make) -> Void in
-            make.centerX.equalTo()(yesterdayBarView)
-            make.bottom.equalTo()(yesterdayBarView.mas_top).with().offset()(-moneyLabelBottomMargin)
+        _yesterdayTopLabel.textColor = UIColor.XCZColor(0x000000)
+        _yesterdayTopLabel.font = UIFont.systemFontOfSize(11)
+        _yesterdayTopLabel.text = "¥ " + XCZconvertToCashString(_yesterdayProfit)
+        addSubview(_yesterdayTopLabel)
+        _yesterdayTopLabel.mas_makeConstraints { (make) -> Void in
+            make.centerX.equalTo()(self._yesterdayBarView)
+            make.bottom.equalTo()(self._yesterdayBarView.mas_top).with().offset()(-moneyLabelBottomMargin)
         }
         
-        totalBarView.mas_makeConstraints { (make) -> Void in
-            make.right.equalTo()(bottomGraLine).with().offset()(-barRightMargin)
+        _totalBarView.mas_makeConstraints { (make) -> Void in
+            make.right.equalTo()(self._bottomGraLine).with().offset()(-barRightMargin)
             make.width.equalTo()(barWidth)
-            make.bottom.equalTo()(bottomGraLine)
+            make.bottom.equalTo()(self._bottomGraLine)
             if self._totalProfit == 0 {
-                make.top.equalTo()(bottomGraLine).with().offset()(-5)
+                make.top.equalTo()(self._bottomGraLine).with().offset()(-5)
             }
             else {
-                make.top.equalTo()(leftGraLine).with().offset()(15)
+                make.top.equalTo()(self._leftGraLine).with().offset()(15)
             }
         }
         
@@ -123,51 +141,48 @@ class XCZBankCountView: UIView {
         totalBottomLabel.text = "累计收益"
         addSubview(totalBottomLabel)
         totalBottomLabel.mas_makeConstraints { (make) -> Void in
-            make.centerX.equalTo()(totalBarView)
+            make.centerX.equalTo()(self._totalBarView)
             make.top.equalTo()(yesterdayBottomLabel)
         }
         
-        let totalTopLabel = UILabel()
-        totalTopLabel.textColor = UIColor.XCZColor(0x000000)
-        totalTopLabel.text = "¥ " + XCZconvertToCashString(_totalProfit)
-        totalTopLabel.font = UIFont.systemFontOfSize(11)
-        addSubview(totalTopLabel)
-        totalTopLabel.mas_makeConstraints { (make) -> Void in
-            make.centerX.equalTo()(totalBarView)
-            make.bottom.equalTo()(totalBarView.mas_top).with().offset()(-moneyLabelBottomMargin)
+        _totalTopLabel.textColor = UIColor.XCZColor(0x000000)
+        _totalTopLabel.text = "¥ " + XCZconvertToCashString(_totalProfit)
+        _totalTopLabel.font = UIFont.systemFontOfSize(11)
+        addSubview(_totalTopLabel)
+        _totalTopLabel.mas_makeConstraints { (make) -> Void in
+            make.centerX.equalTo()(self._totalBarView)
+            make.bottom.equalTo()(self._totalBarView.mas_top).with().offset()(-moneyLabelBottomMargin)
         }
         
         let firstHelpView = UIView()
         addSubview(firstHelpView)
-        firstHelpView.mas_makeConstraints { (make) -> Void in
-            make.left.equalTo()(yesterdayBarView.mas_right)
-            make.bottom.equalTo()(bottomGraLine)
-            make.top.equalTo()(leftGraLine).with().offset()(15)
+        firstHelpView.mas_makeConstraints {(make) -> Void in
+            make.left.equalTo()(self._yesterdayBarView.mas_right)
+            make.bottom.equalTo()(self._bottomGraLine)
+            make.top.equalTo()(self._leftGraLine).with().offset()(15)
         }
         
-        let weekBarView = UIView()
-        weekBarView.backgroundColor = UIColor.XCZColor(0xf95f50)
-        addSubview(weekBarView)
-        weekBarView.mas_makeConstraints { (make) -> Void in
-            make.bottom.equalTo()(bottomGraLine)
+        _weekBarView.backgroundColor = UIColor.XCZColor(0xf95f50)
+        addSubview(_weekBarView)
+        _weekBarView.mas_makeConstraints { (make) -> Void in
+            make.bottom.equalTo()(self._bottomGraLine)
             make.left.equalTo()(firstHelpView.mas_right)
             make.width.equalTo()(barWidth)
             if self._totalProfit == 0 {
-                make.height.equalTo()(totalBarView)
+                make.height.equalTo()(self._totalBarView)
             }
             else {
-                make.height.equalTo()(totalBarView).with().multipliedBy()(CGFloat(self._weekProfit / self._totalProfit))
+                make.height.equalTo()(self._totalBarView).with().multipliedBy()(CGFloat(self._weekProfit / self._totalProfit))
             }
         }
         
-        let weekTopLabel = UILabel()
-        weekTopLabel.textColor = UIColor.XCZColor(0x000000)
-        weekTopLabel.font = UIFont.systemFontOfSize(11)
-        weekTopLabel.text = "¥ " + XCZconvertToCashString(_weekProfit)
-        addSubview(weekTopLabel)
-        weekTopLabel.mas_makeConstraints { (make) -> Void in
-            make.centerX.equalTo()(weekBarView)
-            make.bottom.equalTo()(weekBarView.mas_top).with().offset()(-moneyLabelBottomMargin)
+        _weekTopLabel.textColor = UIColor.XCZColor(0x000000)
+        _weekTopLabel.font = UIFont.systemFontOfSize(11)
+        _weekTopLabel.text = "¥ " + XCZconvertToCashString(_weekProfit)
+        addSubview(_weekTopLabel)
+        _weekTopLabel.mas_makeConstraints { (make) -> Void in
+            make.centerX.equalTo()(self._weekBarView)
+            make.bottom.equalTo()(self._weekBarView.mas_top).with().offset()(-moneyLabelBottomMargin)
         }
         
         let weekBottomLabel = UILabel()
@@ -176,42 +191,40 @@ class XCZBankCountView: UIView {
         weekBottomLabel.text = "本周收益"
         addSubview(weekBottomLabel)
         weekBottomLabel.mas_makeConstraints { (make) -> Void in
-            make.centerX.equalTo()(weekBarView)
+            make.centerX.equalTo()(self._weekBarView)
             make.top.equalTo()(yesterdayBottomLabel)
         }
         
         let secondHelpView = UIView()
         addSubview(secondHelpView)
         secondHelpView.mas_makeConstraints { (make) -> Void in
-            make.left.equalTo()(weekBarView.mas_right)
-            make.bottom.equalTo()(bottomGraLine)
-            make.top.equalTo()(leftGraLine).with().offset()(15)
+            make.left.equalTo()(self._weekBarView.mas_right)
+            make.bottom.equalTo()(self._bottomGraLine)
+            make.top.equalTo()(self._leftGraLine).with().offset()(15)
             make.width.equalTo()(firstHelpView)
         }
-        
-        let monthBarView = UIView()
-        monthBarView.backgroundColor = UIColor.XCZColor(0x2cbbe7)
-        addSubview(monthBarView)
-        monthBarView.mas_makeConstraints { (make) -> Void in
-            make.bottom.equalTo()(bottomGraLine)
+
+        _monthBarView.backgroundColor = UIColor.XCZColor(0x2cbbe7)
+        addSubview(_monthBarView)
+        _monthBarView.mas_makeConstraints { (make) -> Void in
+            make.bottom.equalTo()(self._bottomGraLine)
             make.left.equalTo()(secondHelpView.mas_right)
             make.width.equalTo()(barWidth)
             if self._totalProfit == 0 {
-                make.height.equalTo()(totalBarView)
+                make.height.equalTo()(self._totalBarView)
             }
             else {
-                make.height.equalTo()(totalBarView).with().multipliedBy()(CGFloat(self._monthProfit / self._totalProfit))
+                make.height.equalTo()(self._totalBarView).with().multipliedBy()(CGFloat(self._monthProfit / self._totalProfit))
             }
         }
         
-        let monthTopLabel = UILabel()
-        monthTopLabel.text = "¥ " + XCZconvertToCashString(_monthProfit)
-        monthTopLabel.textColor = UIColor.XCZColor(0x000000)
-        monthTopLabel.font = UIFont.systemFontOfSize(11)
-        addSubview(monthTopLabel)
-        monthTopLabel.mas_makeConstraints { (make) -> Void in
-            make.centerX.equalTo()(monthBarView)
-            make.bottom.equalTo()(monthBarView.mas_top).with().offset()(-moneyLabelBottomMargin)
+        _monthTopLabel.text = "¥ " + XCZconvertToCashString(_monthProfit)
+        _monthTopLabel.textColor = UIColor.XCZColor(0x000000)
+        _monthTopLabel.font = UIFont.systemFontOfSize(11)
+        addSubview(_monthTopLabel)
+        _monthTopLabel.mas_makeConstraints { (make) -> Void in
+            make.centerX.equalTo()(self._monthBarView)
+            make.bottom.equalTo()(self._monthBarView.mas_top).with().offset()(-moneyLabelBottomMargin)
         }
         
         let monthBottomLabel = UILabel()
@@ -220,18 +233,85 @@ class XCZBankCountView: UIView {
         monthBottomLabel.textColor = UIColor.XCZColor(0x626262)
         addSubview(monthBottomLabel)
         monthBottomLabel.mas_makeConstraints { (make) -> Void in
-            make.centerX.equalTo()(monthBarView)
+            make.centerX.equalTo()(self._monthBarView)
             make.top.equalTo()(yesterdayBottomLabel)
         }
         
         let thirdHelpView = UIView()
         addSubview(thirdHelpView)
         thirdHelpView.mas_makeConstraints { (make) -> Void in
-            make.left.equalTo()(monthBarView.mas_right)
-            make.right.equalTo()(totalBarView.mas_left)
-            make.bottom.equalTo()(bottomGraLine)
-            make.top.equalTo()(leftGraLine).with().offset()(15)
+            make.left.equalTo()(self._monthBarView.mas_right)
+            make.right.equalTo()(self._totalBarView.mas_left)
+            make.bottom.equalTo()(self._bottomGraLine)
+            make.top.equalTo()(self._leftGraLine).with().offset()(15)
             make.width.equalTo()(firstHelpView)
         }
+    }
+    
+    private func p_updateUI() {
+        _yesterdayTopLabel.text = "¥ " + XCZconvertToCashString(_yesterdayProfit)
+        _weekTopLabel.text = "¥ " + XCZconvertToCashString(_weekProfit)
+        _monthTopLabel.text = "¥ " + XCZconvertToCashString(_monthProfit)
+        _totalTopLabel.text = "¥ " + XCZconvertToCashString(_totalProfit)
+        
+        for c in constraints() as! [NSLayoutConstraint] {
+            //去除之前对各个视图height的约束
+            if c.firstItem as? NSObject == _yesterdayBarView && c.firstAttribute == .Height {
+                c.active = false
+            }
+            
+            if c.firstItem as? NSObject == _weekBarView && c.firstAttribute == .Height {
+                c.active = false
+            }
+            
+            if c.firstItem as? NSObject == _monthBarView && c.firstAttribute == .Height {
+                c.active = false
+            }
+            
+            if c.firstItem as? NSObject == _totalBarView && c.firstAttribute == .Top {
+                c.active = false
+            }
+        }
+
+        _totalBarView.mas_makeConstraints { (make) -> Void in
+            if self._totalProfit == 0 {
+                make.top.equalTo()(self._bottomGraLine).with().offset()(-5)
+            }
+            else {
+                make.top.equalTo()(self._leftGraLine).with().offset()(15)
+            }
+        }
+        
+        _yesterdayBarView.mas_makeConstraints { (make) -> Void in
+            if self._totalProfit == 0 {
+                make.height.equalTo()(self._totalBarView)
+            }
+            else {
+                make.height.equalTo()(self._totalBarView).with().multipliedBy()(CGFloat(self._yesterdayProfit / self._totalProfit))
+            }
+        }
+
+        _weekBarView.mas_makeConstraints { (make) -> Void in
+            if self._totalProfit == 0 {
+                make.height.equalTo()(self._totalBarView)
+            }
+            else {
+                make.height.equalTo()(self._totalBarView).with().multipliedBy()(CGFloat(self._weekProfit / self._totalProfit))
+            }
+        }
+
+        _monthBarView.mas_makeConstraints { (make) -> Void in
+            if self._totalProfit == 0 {
+                make.height.equalTo()(self._totalBarView)
+            }
+            else {
+                make.height.equalTo()(self._totalBarView).with().multipliedBy()(CGFloat(self._monthProfit / self._totalProfit))
+            }
+        }
+
+        setNeedsLayout()
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.layoutIfNeeded()
+        })
     }
 }

@@ -132,6 +132,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: - Private method
     func p_appearanceConfig() {
         UINavigationBar.appearance().barTintColor = UIColor.XCZColor(0xe84c3d)
+        UINavigationBar.appearance().titleTextAttributes = XCZConstant.NavigtionBarTitleAttributeDict
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
     }
 }
 
